@@ -1,5 +1,7 @@
 package com.company;
 
+import com.company.frame.CalendarFrame;
+
 public class CalendarMainClass {
 
     /**
@@ -10,7 +12,7 @@ public class CalendarMainClass {
         /**
          * 创建一个基于CalendarFrame的主容器fram
          */
-        CalendarFrame frame=new CalendarFrame();
+        CalendarFrame frame= new CalendarFrame();
         /**
          * 设置主容器的显示位置，以及界面的高和宽数据
          */
@@ -19,15 +21,11 @@ public class CalendarMainClass {
          * 设置主容器为可见
          */
         frame.setVisible(true);
-        /**
-         * 主容器初始化年月信息
-         */
-        frame.setYearAndMonth(2016,1);
+
         /**
          * 设置主容器的标题
          */
         frame.setTitle("万年历");
-
 
     }
 
