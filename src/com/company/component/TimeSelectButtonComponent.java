@@ -1,22 +1,28 @@
-package com.company.bean;
+package com.company.component;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 
 /**
  * 时分秒的按钮
  */
-public class TimeSelectButtonComponent extends JComponent implements ActionListener {
+public class TimeSelectButtonComponent extends JPanel implements ItemListener {
     private JComboBox<Integer> buttonHourComboBox = new JComboBox<>();
 
     private JComboBox<Integer> buttonMinuteComboBox = new JComboBox<>();
 
     private JComboBox<Integer> buttonSecondComboBox = new JComboBox<>();
 
+    private int hour, minute, second;
 
-    private int currentHour, currentMinute, currentSecond;
+
+    public void setInputAreaComponent(InputAreaComponent inputAreaComponent) {
+        this.inputAreaComponent = inputAreaComponent;
+    }
+
+    private InputAreaComponent inputAreaComponent;
 
 
     public TimeSelectButtonComponent() {
@@ -49,10 +55,15 @@ public class TimeSelectButtonComponent extends JComponent implements ActionListe
     }
 
 
+
     @Override
-    public void actionPerformed(ActionEvent e) {
+    public void itemStateChanged(ItemEvent e) {
+
         // todo 数字的变化
 
-
+        if (this.inputAreaComponent != null) {
+            // 展示文本框的备忘录
+            this.inputAreaComponent.ShowTipBySelectTimeComponent(this.hour, this.minute, this.second);
+        }
     }
 }

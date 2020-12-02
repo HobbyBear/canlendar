@@ -1,6 +1,8 @@
 package com.company;
 
-import com.company.frame.CalendarFrame;
+import com.company.component.CalendarFrame;
+import com.company.model.NotePad;
+import com.company.schedule.Scheduler;
 
 public class CalendarMainClass {
 
@@ -27,6 +29,10 @@ public class CalendarMainClass {
          */
         frame.setTitle("万年历");
 
+        Scheduler scheduler = new Scheduler();
+        scheduler.setCalendarFrame(frame);
+        scheduler.AddTask(new NotePad());
+        scheduler.DelTask(new NotePad());
     }
 
 }
