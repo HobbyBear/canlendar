@@ -90,7 +90,13 @@ public class NowTimeTextFieldComponent extends JPanel implements ActionListener 
             @Override
             public void keyTyped(KeyEvent e) {
                 if ((char) e.getKeyChar() == KeyEvent.VK_ENTER) {
-                    month = Integer.parseInt(monthField.getText());
+                    month = Integer.parseInt(monthField.getText()) - 1;
+                    if (month < 1) {
+                        month = 1;
+                    }
+                    if (month > 11) {
+                        month = 11;
+                    }
                     calendar.setYearAndMonth(year, month);
                 }
             }
@@ -109,12 +115,18 @@ public class NowTimeTextFieldComponent extends JPanel implements ActionListener 
         }
         if (e.getSource() == buttonMonthLeft) {
             month--;
+            if (month < 1) {
+                month = 1;
+            }
         }
         if (e.getSource() == buttonMonthRight) {
             month++;
+            if (month > 11) {
+                month = 11;
+            }
         }
         this.yearField.setText(Integer.toString(year));
-        this.monthField.setText(Integer.toString(month));
+        this.monthField.setText(Integer.toString(month + 1));
         calendar.setYearAndMonth(year, month);
     }
 

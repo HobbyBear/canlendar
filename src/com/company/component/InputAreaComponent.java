@@ -33,6 +33,8 @@ public class InputAreaComponent extends JPanel implements ActionListener {
 
     private int year, month, day, hour, minute, second;
 
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
     public InputAreaComponent() {
         this.setLayout(new BorderLayout());
         inputText = new JTextArea();
@@ -45,7 +47,7 @@ public class InputAreaComponent extends JPanel implements ActionListener {
         //我要获取当前的日期
         Date date = new Date();
         //设置要获取到什么样的时间
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
         //获取String类型的时间
         String createdate = sdf.format(date);
         nowTime.setText(createdate);
@@ -72,7 +74,7 @@ public class InputAreaComponent extends JPanel implements ActionListener {
         java.util.Calendar calendar = java.util.Calendar.getInstance();
 
         year = calendar.get(java.util.Calendar.YEAR);
-        month = calendar.get(Calendar.MONTH) + 1;
+        month = calendar.get(Calendar.MONTH);
         day = calendar.get(Calendar.DAY_OF_MONTH);
 
         hour = calendar.get(Calendar.HOUR);
@@ -99,15 +101,18 @@ public class InputAreaComponent extends JPanel implements ActionListener {
     }
 
     private void ShowTip() {
+        System.out.println("文本框获取到"+getTime());
         NotePad notePad = notePadDao.findNotePadeByTime(getTime());
-        System.out.println("文本框获取到");
         if (notePad != null) {
+            System.out.println("文本框获取到"+notePad.getTime()+" 内容:"+notePad.getContent());
             this.inputText.setText(notePad.getContent());
         }
     }
 
     private String getTime(){
-        return year+"-"+month+"-"+day +" "+hour+":"+minute+":"+second;
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(year,month,day,hour,minute,second);
+        return sdf.format(calendar.getTime());
     }
 
 

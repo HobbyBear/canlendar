@@ -131,6 +131,7 @@ public class Calendar extends JPanel implements ActionListener {
         for (int i = 0; i < 42; i++) {
             labelDay[i].setText(calendarBean.getDays()[i]);
             JLabel label = labelDay[i];
+            label.setOpaque(true);
             labelDay[i].addMouseListener(new MouseListener() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
