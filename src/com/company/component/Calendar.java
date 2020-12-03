@@ -132,6 +132,7 @@ public class Calendar extends JPanel implements ActionListener {
             labelDay[i].setText(calendarBean.getDays()[i]);
             JLabel label = labelDay[i];
             label.setOpaque(true);
+            label.setBackground(Color.WHITE);
             labelDay[i].addMouseListener(new MouseListener() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
@@ -179,8 +180,6 @@ public class Calendar extends JPanel implements ActionListener {
         }
 
         if (this.inputAreaComponent != null) {
-            // 展示文本框的备忘录
-            System.out.println(Integer.parseInt(day));
             this.inputAreaComponent.ShowTipByCalendar(this.calendarBean.year, this.calendarBean.month, Integer.parseInt(day));
         }
     }

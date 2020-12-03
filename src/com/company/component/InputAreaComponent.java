@@ -77,7 +77,7 @@ public class InputAreaComponent extends JPanel implements ActionListener {
         month = calendar.get(Calendar.MONTH);
         day = calendar.get(Calendar.DAY_OF_MONTH);
 
-        hour = calendar.get(Calendar.HOUR);
+        hour = calendar.get(Calendar.HOUR_OF_DAY);
         minute = calendar.get(Calendar.MINUTE);
         second = calendar.get(Calendar.SECOND);
         ShowTip();
@@ -101,10 +101,8 @@ public class InputAreaComponent extends JPanel implements ActionListener {
     }
 
     private void ShowTip() {
-        System.out.println("文本框获取到"+getTime());
         NotePad notePad = notePadDao.findNotePadeByTime(getTime());
         if (notePad != null) {
-            System.out.println("文本框获取到"+notePad.getTime()+" 内容:"+notePad.getContent());
             this.inputText.setText(notePad.getContent());
         }
     }
@@ -121,7 +119,7 @@ public class InputAreaComponent extends JPanel implements ActionListener {
         if (e.getSource() == saveButton) {
             NotePad notePad = new NotePad();
             notePad.setContent(this.inputText.getText());
-            notePad.setTime(this.nowTime.getText());
+            notePad.setTime(getTime());
             notePadDao.saveOrUpdateNotePad(notePad);
             JOptionPane.showMessageDialog(calendarFrame, "成功!!!", "保存", JOptionPane.INFORMATION_MESSAGE);
         }
@@ -129,7 +127,7 @@ public class InputAreaComponent extends JPanel implements ActionListener {
         if (e.getSource() == delButton) {
             NotePad notePad = new NotePad();
             notePad.setContent(this.inputText.getText());
-            notePad.setTime(this.nowTime.getText());
+            notePad.setTime(getTime());
             notePadDao.delNotePad(notePad);
             JOptionPane.showMessageDialog(calendarFrame, "成功!!!", "删除", JOptionPane.INFORMATION_MESSAGE);
         }

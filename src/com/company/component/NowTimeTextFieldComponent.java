@@ -45,7 +45,7 @@ public class NowTimeTextFieldComponent extends JPanel implements ActionListener 
         java.util.Calendar instance = java.util.Calendar.getInstance();
 
         year = instance.get(java.util.Calendar.YEAR);
-        month = instance.get(Calendar.MONTH) + 1;
+        month = instance.get(Calendar.MONTH);
 
         yearField.setHorizontalAlignment(JTextField.CENTER);
         yearField.setText(Integer.toString(year));
@@ -55,7 +55,7 @@ public class NowTimeTextFieldComponent extends JPanel implements ActionListener 
         buttonMonthRight = new JButton(">");
 
         monthField.setHorizontalAlignment(JTextField.CENTER);
-        monthField.setText(Integer.toString(month));
+        monthField.setText(Integer.toString(month + 1));
 
         FlowLayout f = new FlowLayout();
         f.setHgap(20);//水平间距
