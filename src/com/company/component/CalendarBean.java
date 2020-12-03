@@ -2,9 +2,7 @@ package com.company.component;
 
 import java.util.Calendar;
 
-/**
- * 生成日历字符串数组
- */
+
 public class CalendarBean {
     public String[] getDays() {
         return days;
@@ -13,11 +11,7 @@ public class CalendarBean {
     String days[];
     int year = 2005, month = 0, firstDayIndex;
 
-    /**
-     * 创建可以得到具体日期的字符串数组
-     *
-     * @return 返回具体日期的字符串数组
-     */
+
     public void setAndGetCalendar(int year, int month) {
         this.year = year;
         this.month = month;

@@ -36,10 +36,10 @@ public class Scheduler {
             e.printStackTrace();
         }
         if (Calendar.getInstance().getTime().compareTo(date) > 0) {
-            System.out.println("当前时间:" + Calendar.getInstance().getTime() + " 任务时间:" + date + " 不添加定时任务");
+            System.out.println("current_time:" + Calendar.getInstance().getTime() + " task_time:" + date + " can not add task");
             return;
         }
-        System.out.println("添加了备忘录定时任务, 当前时间：" + Calendar.getInstance().getTime() + "时间:" + notePad.getTime() + ",内容:" + notePad.getContent() + " 在" + (date.getTime() - Calendar.getInstance().getTime().getTime()) / 1000 + "秒后执行");
+        System.out.println("add task! current_time：" + Calendar.getInstance().getTime() + "task_time:" + notePad.getTime() + ",content:" + notePad.getContent() + " after" + (date.getTime() - Calendar.getInstance().getTime().getTime()) / 1000 + "exec");
         Future f = this.scheduledExecutorService.schedule(() -> JOptionPane.showMessageDialog(calendarFrame, notePad.getContent(),
                 "日程", JOptionPane.INFORMATION_MESSAGE), date.getTime() - Calendar.getInstance().getTime().getTime(), TimeUnit.MILLISECONDS);
 

@@ -26,9 +26,7 @@ public class CalendarFrame extends JFrame {
         add(inputAreaComponent, BorderLayout.EAST);
         inputAreaComponent.setCalendarFrame(this);
 
-        /**
-         * 设置，当点击窗体右上角的关闭图标时，程序会做出直接结束程序的处理
-         */
+
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 }

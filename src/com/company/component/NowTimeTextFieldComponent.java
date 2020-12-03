@@ -12,7 +12,7 @@ import java.awt.event.KeyEvent;
 import java.util.Calendar;
 
 /**
- * 当前时间的年份，月份框
+ * now time textFiled
  */
 public class NowTimeTextFieldComponent extends JPanel implements ActionListener {
 
@@ -58,8 +58,8 @@ public class NowTimeTextFieldComponent extends JPanel implements ActionListener 
         monthField.setText(Integer.toString(month + 1));
 
         FlowLayout f = new FlowLayout();
-        f.setHgap(20);//水平间距
-        f.setVgap(10);//组件垂直间距
+        f.setHgap(20);
+        f.setVgap(10);
 
         this.setLayout(f);
 

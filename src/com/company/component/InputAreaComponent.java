@@ -12,7 +12,6 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-// 输入框
 public class InputAreaComponent extends JPanel implements ActionListener {
 
     private JTextArea inputText;
@@ -51,22 +50,22 @@ public class InputAreaComponent extends JPanel implements ActionListener {
         //获取String类型的时间
         String createdate = sdf.format(date);
         nowTime.setText(createdate);
-        nowTime.setFont(new Font("微软雅黑", Font.BOLD, 18));
+        nowTime.setFont(new Font("Dialog", Font.BOLD, 18));
         this.add(nowTime, BorderLayout.NORTH);
 
         JPanel sPanel = new JPanel();
         this.add(sPanel, BorderLayout.SOUTH);
 
         FlowLayout f = new FlowLayout();
-        f.setHgap(20);//水平间距
-        f.setVgap(10);//组件垂直间距
+        f.setHgap(20);
+        f.setVgap(10);
         sPanel.setLayout(f);
 
-        saveButton = new JButton("保存");
+        saveButton = new JButton("save");
         sPanel.add(saveButton);
         saveButton.addActionListener(this);
 
-        delButton = new JButton("删除");
+        delButton = new JButton("delete");
         sPanel.add(delButton);
         delButton.addActionListener(this);
 
@@ -121,7 +120,7 @@ public class InputAreaComponent extends JPanel implements ActionListener {
             notePad.setContent(this.inputText.getText());
             notePad.setTime(getTime());
             notePadDao.saveOrUpdateNotePad(notePad);
-            JOptionPane.showMessageDialog(calendarFrame, "成功!!!", "保存", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(calendarFrame, "success!!!", "save", JOptionPane.INFORMATION_MESSAGE);
         }
 
         if (e.getSource() == delButton) {
@@ -129,7 +128,7 @@ public class InputAreaComponent extends JPanel implements ActionListener {
             notePad.setContent(this.inputText.getText());
             notePad.setTime(getTime());
             notePadDao.delNotePad(notePad);
-            JOptionPane.showMessageDialog(calendarFrame, "成功!!!", "删除", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(calendarFrame, "success!!!", "delete", JOptionPane.INFORMATION_MESSAGE);
         }
     }
 }

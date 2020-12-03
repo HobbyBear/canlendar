@@ -5,9 +5,7 @@ import java.awt.*;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
-/**
- * 时分秒的按钮
- */
+
 public class TimeSelectButtonComponent extends JPanel implements ItemListener {
     private JComboBox<Integer> buttonHourComboBox = new JComboBox<>();
 
@@ -29,8 +27,8 @@ public class TimeSelectButtonComponent extends JPanel implements ItemListener {
         super();
 
         FlowLayout f = new FlowLayout();
-        f.setHgap(20);//水平间距
-        f.setVgap(10);//组件垂直间距
+        f.setHgap(20);
+        f.setVgap(10);
 
         this.setLayout(f);
 
@@ -47,16 +45,16 @@ public class TimeSelectButtonComponent extends JPanel implements ItemListener {
         }
 
         this.add(buttonHourComboBox);
-        this.add(new JLabel("时"));
+        this.add(new JLabel("hour"));
 
         buttonHourComboBox.addItemListener(this);
         buttonMinuteComboBox.addItemListener(this);
         buttonSecondComboBox.addItemListener(this);
 
         this.add(buttonMinuteComboBox);
-        this.add(new JLabel("分"));
+        this.add(new JLabel("minute"));
         this.add(buttonSecondComboBox);
-        this.add(new JLabel("秒"));
+        this.add(new JLabel("second"));
     }
 
 
@@ -82,7 +80,7 @@ public class TimeSelectButtonComponent extends JPanel implements ItemListener {
         }
 
         if (this.inputAreaComponent != null) {
-            // 展示文本框的备忘录
+            // show tip content
             this.inputAreaComponent.ShowTipBySelectTimeComponent(this.hour, this.minute, this.second);
         }
     }
