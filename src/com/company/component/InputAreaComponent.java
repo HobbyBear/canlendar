@@ -3,6 +3,7 @@ package com.company.component;
 
 import com.company.dao.NotePadDao;
 import com.company.model.NotePad;
+import com.company.schedule.Scheduler;
 
 import javax.swing.*;
 import java.awt.*;
@@ -34,6 +35,12 @@ public class InputAreaComponent extends JPanel implements ActionListener {
 
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
+    public void setScheduler(Scheduler scheduler) {
+        this.scheduler = scheduler;
+    }
+
+    private Scheduler scheduler;
+
     public InputAreaComponent() {
         this.setLayout(new BorderLayout());
         inputText = new JTextArea();
@@ -43,11 +50,9 @@ public class InputAreaComponent extends JPanel implements ActionListener {
 
         nowTime = new JLabel();
 
-        //我要获取当前的日期
         Date date = new Date();
-        //设置要获取到什么样的时间
 
-        //获取String类型的时间
+
         String createdate = sdf.format(date);
         nowTime.setText(createdate);
         nowTime.setFont(new Font("Dialog", Font.BOLD, 18));
@@ -119,8 +124,17 @@ public class InputAreaComponent extends JPanel implements ActionListener {
             NotePad notePad = new NotePad();
             notePad.setContent(this.inputText.getText());
             notePad.setTime(getTime());
-            notePadDao.saveOrUpdateNotePad(notePad);
+            NotePad oldNotePad = notePadDao.findNotePadeByTime(notePad.getTime());
+            if (oldNotePad == null) {
+                notePadDao.saveNotePad(notePad);
+                scheduler.AddTask(notePad);
+            } else {
+                notePadDao.updateNotePad(oldNotePad, notePad);
+                scheduler.DelTask(oldNotePad);
+                scheduler.AddTask(notePad);
+            }
             JOptionPane.showMessageDialog(calendarFrame, "success!!!", "save", JOptionPane.INFORMATION_MESSAGE);
+
         }
 
         if (e.getSource() == delButton) {
@@ -129,6 +143,7 @@ public class InputAreaComponent extends JPanel implements ActionListener {
             notePad.setTime(getTime());
             notePadDao.delNotePad(notePad);
             JOptionPane.showMessageDialog(calendarFrame, "success!!!", "delete", JOptionPane.INFORMATION_MESSAGE);
+            scheduler.DelTask(notePad);
         }
     }
 }

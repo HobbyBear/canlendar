@@ -37,7 +37,7 @@ public class NotePadDao {
     }
 
     public void saveNotePad(NotePad notePad) {
-        // 存文件
+
         try {
             FileOutputStream out = new FileOutputStream(db, true);
             try {

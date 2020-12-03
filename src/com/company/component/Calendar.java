@@ -16,7 +16,7 @@ public class Calendar extends JPanel implements ActionListener {
     JTextArea inputText;
 
     JLabel nowTimeLabel;
-    String name[] = {"日", "一", "二", "三", "四", "五", "六"};
+    String name[] = {"Sun", "Mon", "Tues", "Wed", "Thur", "Fri", "Sar"};
     CalendarBean calendarBean;
 
     TimeSelectButtonComponent timeSelectButtonComponent = new TimeSelectButtonComponent();

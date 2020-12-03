@@ -11,6 +11,10 @@ public class CalendarFrame extends JFrame {
 
     private Calendar calendar;
 
+    public InputAreaComponent getInputAreaComponent() {
+        return inputAreaComponent;
+    }
+
     private InputAreaComponent inputAreaComponent;
 
 

@@ -31,6 +31,7 @@ public class CalendarMainClass {
         for (NotePad notePad : allTipList) {
             scheduler.AddTask(notePad);
         }
+        frame.getInputAreaComponent().setScheduler(scheduler);
 
     }
 

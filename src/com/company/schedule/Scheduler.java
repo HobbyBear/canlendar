@@ -39,9 +39,9 @@ public class Scheduler {
             System.out.println("current_time:" + Calendar.getInstance().getTime() + " task_time:" + date + " can not add task");
             return;
         }
-        System.out.println("add task! current_time：" + Calendar.getInstance().getTime() + "task_time:" + notePad.getTime() + ",content:" + notePad.getContent() + " after" + (date.getTime() - Calendar.getInstance().getTime().getTime()) / 1000 + "exec");
+        System.out.println("add task! current_time:" + Calendar.getInstance().getTime() + "task_time:" + notePad.getTime() + ",content:" + notePad.getContent() + " after" + (date.getTime() - Calendar.getInstance().getTime().getTime()) / 1000 + "exec");
         Future f = this.scheduledExecutorService.schedule(() -> JOptionPane.showMessageDialog(calendarFrame, notePad.getContent(),
-                "日程", JOptionPane.INFORMATION_MESSAGE), date.getTime() - Calendar.getInstance().getTime().getTime(), TimeUnit.MILLISECONDS);
+                "schedule", JOptionPane.INFORMATION_MESSAGE), date.getTime() - Calendar.getInstance().getTime().getTime(), TimeUnit.MILLISECONDS);
 
         taskMap.put(notePad.getTime(), f);
 
@@ -54,10 +54,6 @@ public class Scheduler {
         taskMap.keySet().removeIf(key -> key.equals(notePad.getTime()));
     }
 
-    public void UpdateTask(NotePad notePad) {
-        DelTask(notePad);
-        AddTask(notePad);
-    }
 
 
 }
