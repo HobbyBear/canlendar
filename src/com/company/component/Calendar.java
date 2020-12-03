@@ -9,7 +9,7 @@ import javax.swing.border.*;
 /**
  * 窗体的具体构造及执行代码
  */
-public class Calendar extends JPanel implements ActionListener{
+public class Calendar extends JPanel implements ActionListener {
     private static final long serialVersionUID = 1L;
     /**
      * labelDay[] 存放每一天的标签数组|
@@ -124,29 +124,78 @@ public class Calendar extends JPanel implements ActionListener{
      * @param m 月份
      */
     public void setYearAndMonth(int y, int m) {
-        calendarBean.setYear(y);
-        /**
-         * 将setYearAndMonth方法得到的year，month的值传给calendar类
-         */
-        calendarBean.setMonth(m);
         /**
          * 获取calendar类中getCalendar方法中的日期字符串数组，将获取的字符串数组的值传给每个labelDay小日期标签
          */
-        String day[] = calendarBean.getCalendar();
-        for (int i = 0; i < 42; i++)
-            labelDay[i].setText(day[i]);
+        calendarBean.setAndGetCalendar(y, m);
+        for (int i = 0; i < 42; i++) {
+            labelDay[i].setText(calendarBean.getDays()[i]);
+            JLabel label = labelDay[i];
+            labelDay[i].addMouseListener(new MouseListener() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                       setDay(label.getText());
+                }
+
+                @Override
+                public void mousePressed(MouseEvent e) {
+
+                }
+
+                @Override
+                public void mouseReleased(MouseEvent e) {
+
+                }
+
+                @Override
+                public void mouseEntered(MouseEvent e) {
+
+                }
+
+                @Override
+                public void mouseExited(MouseEvent e) {
+
+                }
+            });
+        }
+
+        this.labelDay[calendarBean.getFirstDayIndex()].setBackground(Color.CYAN);
 
         if (this.inputAreaComponent != null) {
             // 展示文本框的备忘录
-            this.inputAreaComponent.ShowTipByCalendar(this.calendarBean.year, this.calendarBean.month, this.calendarBean.month);
+            this.inputAreaComponent.ShowTipByCalendar(this.calendarBean.year, this.calendarBean.month, 1);
+        }
+    }
+
+
+    private void setDay(String day) {
+
+        for (JLabel jLabel : this.labelDay) {
+            jLabel.setBackground(Color.WHITE);
+            if (day.equals(jLabel.getText())) {
+                jLabel.setBackground(Color.CYAN);
+            }
         }
 
+        if (this.inputAreaComponent != null) {
+            // 展示文本框的备忘录
+            System.out.println(Integer.parseInt(day));
+            this.inputAreaComponent.ShowTipByCalendar(this.calendarBean.year, this.calendarBean.month, Integer.parseInt(day));
+        }
     }
+
 
     /**
      * ---------重写actionPerformed方法---------
      */
     public void actionPerformed(ActionEvent e) {
+
+        for (JLabel jLabel : this.labelDay) {
+            if (e.getSource() == jLabel) {
+                setDay(jLabel.getText());
+            }
+        }
+
 //        /**
 //         * reg为正则表达式，表示纯数字的字符串（不含其他任何与数字无关的字符）
 //         */
@@ -160,7 +209,7 @@ public class Calendar extends JPanel implements ActionListener{
 //             */
 //            if (nowTimeTextFieldComponent.getYearField().getText().isEmpty()) {
 //
-                JOptionPane.showMessageDialog(this, "您未输入年份", "消息对话框", JOptionPane.WARNING_MESSAGE);
+//        JOptionPane.showMessageDialog(this, "您未输入年份", "消息对话框", JOptionPane.WARNING_MESSAGE);
 //                /**
 //                 * 将屏幕焦点聚在text组件上
 //                 */

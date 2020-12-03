@@ -7,10 +7,7 @@ import com.company.model.NotePad;
 import javax.swing.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.ScheduledExecutorService;
@@ -45,9 +42,8 @@ public class Scheduler {
             @Override
             public void run() {
                 JOptionPane.showMessageDialog(calendarFrame, notePad.getContent(), "日程", JOptionPane.INFORMATION_MESSAGE);
-                System.out.println("hello world");
             }
-        }, 3, TimeUnit.SECONDS);
+        }, date.getTime() - Calendar.getInstance().getTime().getTime() , TimeUnit.MILLISECONDS);
 
         taskMap.put(notePad.getTime(), f);
 
@@ -57,6 +53,7 @@ public class Scheduler {
     public void DelTask(NotePad notePad) {
         Future f = taskMap.get(notePad.getTime());
         f.cancel(true);
+        taskMap.keySet().removeIf(key -> key.equals(notePad.getTime()));
     }
 
     public void UpdateTask(NotePad notePad) {

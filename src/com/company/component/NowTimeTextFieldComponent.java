@@ -1,19 +1,20 @@
 package com.company.component;
 
 import javax.swing.*;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import javax.swing.text.Document;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.Calendar;
 
 /**
  * 当前时间的年份，月份框
  */
 public class NowTimeTextFieldComponent extends JPanel implements ActionListener {
-
-    public JTextField getYearField() {
-        return yearField;
-    }
 
     private JTextField yearField;
 
@@ -41,10 +42,10 @@ public class NowTimeTextFieldComponent extends JPanel implements ActionListener 
         buttonYearLeft = new JButton(" < ");
         buttonYearRight = new JButton(">");
 
-        java.util.Calendar calendar = java.util.Calendar.getInstance();
+        java.util.Calendar instance = java.util.Calendar.getInstance();
 
-        year = calendar.get(java.util.Calendar.YEAR);
-        month = calendar.get(Calendar.MONTH) + 1;
+        year = instance.get(java.util.Calendar.YEAR);
+        month = instance.get(Calendar.MONTH) + 1;
 
         yearField.setHorizontalAlignment(JTextField.CENTER);
         yearField.setText(Integer.toString(year));
@@ -75,6 +76,26 @@ public class NowTimeTextFieldComponent extends JPanel implements ActionListener 
         buttonYearRight.addActionListener(this);
         buttonYearLeft.addActionListener(this);
 
+        yearField.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                if ((char) e.getKeyChar() == KeyEvent.VK_ENTER) {
+                    year = Integer.parseInt(yearField.getText());
+                    calendar.setYearAndMonth(year, month);
+                }
+            }
+        });
+
+        monthField.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                if ((char) e.getKeyChar() == KeyEvent.VK_ENTER) {
+                    month = Integer.parseInt(monthField.getText());
+                    calendar.setYearAndMonth(year, month);
+                }
+            }
+        });
+
     }
 
 
@@ -96,4 +117,5 @@ public class NowTimeTextFieldComponent extends JPanel implements ActionListener 
         this.monthField.setText(Integer.toString(month));
         calendar.setYearAndMonth(year, month);
     }
+
 }

@@ -23,12 +23,8 @@ public class CalendarFrame extends JFrame {
         calendar.setInputAreaComponent(inputAreaComponent);
 
         add(calendar);
-        JTextArea inputText;
-        inputText = new JTextArea();
-
-        inputText.setColumns(25);
-        inputText.setRows(23);
         add(inputAreaComponent, BorderLayout.EAST);
+        inputAreaComponent.setCalendarFrame(this);
 
         /**
          * 设置，当点击窗体右上角的关闭图标时，程序会做出直接结束程序的处理

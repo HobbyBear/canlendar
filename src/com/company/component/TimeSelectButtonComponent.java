@@ -48,6 +48,11 @@ public class TimeSelectButtonComponent extends JPanel implements ItemListener {
 
         this.add(buttonHourComboBox);
         this.add(new JLabel("时"));
+
+        buttonHourComboBox.addItemListener(this);
+        buttonMinuteComboBox.addItemListener(this);
+        buttonSecondComboBox.addItemListener(this);
+
         this.add(buttonMinuteComboBox);
         this.add(new JLabel("分"));
         this.add(buttonSecondComboBox);
@@ -55,11 +60,26 @@ public class TimeSelectButtonComponent extends JPanel implements ItemListener {
     }
 
 
-
     @Override
     public void itemStateChanged(ItemEvent e) {
 
-        // todo 数字的变化
+        if (e.getSource() == buttonHourComboBox){
+            if (e.getStateChange() == ItemEvent.SELECTED) {
+                hour = Integer.parseInt(e.getItem().toString());
+            }
+        }
+
+        if (e.getSource() == buttonMinuteComboBox){
+            if (e.getStateChange() == ItemEvent.SELECTED) {
+                minute = Integer.parseInt(e.getItem().toString());
+            }
+        }
+
+        if (e.getSource() == buttonSecondComboBox){
+            if (e.getStateChange() == ItemEvent.SELECTED) {
+                second = Integer.parseInt(e.getItem().toString());
+            }
+        }
 
         if (this.inputAreaComponent != null) {
             // 展示文本框的备忘录
