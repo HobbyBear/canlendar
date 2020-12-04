@@ -64,8 +64,8 @@ public class Calendar extends JPanel implements ActionListener {
         JPanel pEast = new JPanel();
 
         FlowLayout f = (FlowLayout) pNorth.getLayout();
-        f.setHgap(20);//水平间距
-        f.setVgap(10);//组件垂直间距
+        f.setHgap(20);
+        f.setVgap(10);
         pNorth.add(nowTimeTextFieldComponent);
         pNorth.add(nowTimeLabel);
         pSouth.add(timeSelectButtonComponent);
@@ -87,7 +87,7 @@ public class Calendar extends JPanel implements ActionListener {
 
     public void setYearAndMonth(int y, int m) {
 
-        calendarBean.setAndGetCalendar(y, m);
+        calendarBean.setAndGetCalendar(y, m );
         for (int i = 0; i < 42; i++) {
             labelDay[i].setText(calendarBean.getDays()[i]);
             JLabel label = labelDay[i];

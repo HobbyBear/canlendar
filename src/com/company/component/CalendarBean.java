@@ -18,7 +18,7 @@ public class CalendarBean {
 
         days = new String[42];
         Calendar instance = Calendar.getInstance();
-        instance.set(year, month - 1, 1);
+        instance.set(year, month , 1);
         int weekday = instance.get(Calendar.DAY_OF_WEEK) - 1;
         this.firstDayIndex = weekday;
         int day = 0;
