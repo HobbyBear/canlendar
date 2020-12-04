@@ -15,8 +15,10 @@ import java.util.concurrent.TimeUnit;
 
 public class Scheduler {
 
+    // init a thread pool
     private ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(20);
 
+    // the holder of tasks
     private Map<String, Future> taskMap = new HashMap<>();
 
     private SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

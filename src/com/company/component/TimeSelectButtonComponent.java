@@ -53,27 +53,28 @@ public class TimeSelectButtonComponent extends JPanel implements ItemListener {
 
         this.add(buttonMinuteComboBox);
         this.add(new JLabel("minute"));
-        this.add(buttonSecondComboBox);
-        this.add(new JLabel("second"));
+        second = 1;
+//        this.add(buttonSecondComboBox);
+//        this.add(new JLabel("second"));
     }
 
 
     @Override
     public void itemStateChanged(ItemEvent e) {
 
-        if (e.getSource() == buttonHourComboBox){
+        if (e.getSource() == buttonHourComboBox) {
             if (e.getStateChange() == ItemEvent.SELECTED) {
                 hour = Integer.parseInt(e.getItem().toString());
             }
         }
 
-        if (e.getSource() == buttonMinuteComboBox){
+        if (e.getSource() == buttonMinuteComboBox) {
             if (e.getStateChange() == ItemEvent.SELECTED) {
                 minute = Integer.parseInt(e.getItem().toString());
             }
         }
 
-        if (e.getSource() == buttonSecondComboBox){
+        if (e.getSource() == buttonSecondComboBox) {
             if (e.getStateChange() == ItemEvent.SELECTED) {
                 second = Integer.parseInt(e.getItem().toString());
             }

@@ -35,6 +35,8 @@ public class InputAreaComponent extends JPanel implements ActionListener {
 
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
+    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
     public void setScheduler(Scheduler scheduler) {
         this.scheduler = scheduler;
     }
@@ -53,7 +55,7 @@ public class InputAreaComponent extends JPanel implements ActionListener {
         Date date = new Date();
 
 
-        String createdate = sdf.format(date);
+        String createdate = dateFormat.format(date);
         nowTime.setText(createdate);
         nowTime.setFont(new Font("Dialog", Font.BOLD, 18));
         this.add(nowTime, BorderLayout.NORTH);
@@ -81,9 +83,9 @@ public class InputAreaComponent extends JPanel implements ActionListener {
         month = calendar.get(Calendar.MONTH);
         day = calendar.get(Calendar.DAY_OF_MONTH);
 
-        hour = calendar.get(Calendar.HOUR_OF_DAY);
-        minute = calendar.get(Calendar.MINUTE);
-        second = calendar.get(Calendar.SECOND);
+        hour = 1;
+        minute = 1;
+        second = 1;
         ShowTip();
     }
 
@@ -92,7 +94,7 @@ public class InputAreaComponent extends JPanel implements ActionListener {
         this.year = year;
         this.month = month;
         this.day = day;
-        this.nowTime.setText(getTime());
+        this.nowTime.setText(getDate());
         ShowTip();
     }
 
@@ -100,7 +102,7 @@ public class InputAreaComponent extends JPanel implements ActionListener {
         this.hour = hour;
         this.minute = minute;
         this.second = second;
-        this.nowTime.setText(getTime());
+        this.nowTime.setText(getDate());
         ShowTip();
     }
 
@@ -111,10 +113,16 @@ public class InputAreaComponent extends JPanel implements ActionListener {
         }
     }
 
-    private String getTime(){
+    private String getTime() {
         Calendar calendar = Calendar.getInstance();
-        calendar.set(year,month,day,hour,minute,second);
+        calendar.set(year, month, day, hour, minute, second);
         return sdf.format(calendar.getTime());
+    }
+
+    private String getDate() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(year, month, day, hour, minute, second);
+        return dateFormat.format(calendar.getTime());
     }
 
 
